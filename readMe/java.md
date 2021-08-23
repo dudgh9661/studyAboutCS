@@ -28,5 +28,17 @@ String s = "javatpont";
           ***즉, s1과 s2는 같은 reference value of instance를 갖는다.***
           
           :point_right: **Note: String objects are stored in a special memory area known as the "string constant pool".**
+          
+          :point_right: Heap Memory 안에 string constant pool 공간이 있고 그 안에 **String object**를 저장!
+          > 그럼 왜 Java는 String literal 컨셉을 사용하나?
+          >> 만약 "string constant pool" 안에 이미 해당 문자열이 있다면, 새로운 object를 생성하지 않아도 되기 때문에 memory를 효율적으로 사용할 수 있기 때문이다!
                
- 3. By ***new*** keyword
+ 2. By ***new*** keyword 
+    ```
+    String s = new String("Welcome"): //creates two objects and one reference variable
+    ```
+    - In such case, JVM will create a new string object in normal (non-pool) heap memory, and the literal "Welcome" will be placed in the string constant pool. The variable s will refer to the object in a heap (non-pool).
+
+ :pushpin: **결론** 
+ - literal로 생성했을 때, 문자열이 같으면 변수명이 다르더라도 같은 참조값을 갖는다.
+ - new String으로 생성했을 때, 문자열이 같아도 변수명이 다르면 다른 참조값을 갖는다.
