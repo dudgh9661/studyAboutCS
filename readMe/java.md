@@ -1,7 +1,7 @@
 # 목차
 [1. Java String](#java-string)
 
-[2. JVM](#jvm)
+[2. IS-A vs HAS-A](#is-a-vs-has-a)
 
 ## Java String
 - Java에서 String은 char values의 sequence를 표현하는 Object(객체)이다. 
@@ -48,6 +48,63 @@ String s = "javatpont";
  - literal로 생성했을 때, 문자열이 같으면 변수명이 다르더라도 같은 참조값을 갖는다.
  - new String으로 생성했을 때, 문자열이 같아도 변수명이 다르면 다른 참조값을 갖는다.
 
-## JVM
+## IS-A vs HAS-A
+ ### IS-A
+  - JAVA에서의 상속은 Parent Object의 behaviors, properties를 다른 object가 습득하는 mechanism이다.
+    > JAVA의 상속 덕분에 parent class의 methods와 fields를 reuse 할 수 있다. 뿐만 아니라, new methods와 field를 추가해서 사용할 수 있다.
+
+    :point_right: 상속(Inheritance)는 parent-child relationship으로 알려진, **IS-A relationshop**이다.
+    
+    :question: **Why use inheritance in Java?**
+      1. For ***Method Overriding***(So, runtime polymorphism can be achieved)
+      2. For ***COde Reusability***
+ ### HAS-A
+ - 만약 class가 entity reference를 가진다면, 이것은 Aggregation이다. Aggregation은 **HAS-A relationship**을 나타낸다.
+    > 뭔소리냐구요..? 설명해드릴게요
+  
+  Employee object에 id,name, emailId와 같은 정보들이 있다고 가정합니다.
+  
+  이 Object는 'Address Object'(city, state, country와 같은 정보를 가진)를 포함하고 있습니다.
+  ```
+  class Employee{  
+  int id;  
+  String name;  
+  Address address;//Address is a class  
+  ...  
+  }  
+  ```
+  :point_right: In such case, Employee has an entity reference address. **So relationship is Employee HAS-A address.**
+  
+  :question: **Why use Aggregation in Java?**
+    - For Code Reusability
+  
+  > Example of Aggregation
+  ```
+  class Operation{  
+    int square(int n){  
+    return n*n;  
+    }  
+  }  
+  
+  class Circle{  
+    Operation op;//aggregation  
+    double pi=3.14;  
+    
+  double area(int radius){  
+    op=new Operation();  
+    int rsquare=op.square(radius);//code reusability (i.e. delegates the method call).  
+    return pi*rsquare;  
+  }  
+  
+     
+    
+  public static void main(String args[]){  
+    Circle c=new Circle();  
+    double result=c.area(5);  
+    System.out.println(result);  
+    }  
+  }  
+```
+
 
 
