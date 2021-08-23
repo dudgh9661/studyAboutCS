@@ -1,3 +1,8 @@
+# 목차
+[1. Java String](#java-string)
+
+[2. JVM](#jvm)
+
 ## Java String
 - Java에서 String은 char values의 sequence를 표현하는 Object(객체)이다. 
 ```
@@ -42,3 +47,7 @@ String s = "javatpont";
  :pushpin: **결론** 
  - literal로 생성했을 때, 문자열이 같으면 변수명이 다르더라도 같은 참조값을 갖는다.
  - new String으로 생성했을 때, 문자열이 같아도 변수명이 다르면 다른 참조값을 갖는다.
+
+## JVM
+
+
