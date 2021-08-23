@@ -20,7 +20,7 @@ String s = "javatpont";
    For **mutable** strings, you can use **StringBuffer and StringBuilder classes.**
 
 ### How to creat a String object?
- 1. By String literal //String s = "string";
+ 1. By ***String literal***
     - Each time you create a string literal, the JVM checks the **string constant pool"** first.
     If the string already exists in the pool, a reference to the pooled instance is returned. If the string doesn't exist in the pool, a new string instance is created and placed in the pool. 
       - For example:
