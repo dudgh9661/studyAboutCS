@@ -3,6 +3,8 @@
 
 [2. IS-A vs HAS-A](#is-a-vs-has-a)
 
+[2. Overriding vs Overloading](#overriding-vs-overloading)
+
 ## Java String
 - Java에서 String은 char values의 sequence를 표현하는 Object(객체)이다. 
 ```
@@ -108,5 +110,31 @@ String s = "javatpont";
   }  
 ```
 
+## Overriding vs Overloading
+### Overriding과 Overloading이 무엇인가요?
+  - 같은 calss 내 2개 이상의 같은 이름을 가진, **but different parameters**인 methodss, 이것이 **Overloading**이다.
+  - In the parent class and child class, **the method signature(이름, 파라미터) are the same**. 이것이 **Overriding**이다.
 
-
+### Overriding vs Overloading
+ 1. ***Overriding***은 **Runtime Polymorphsim**을 구현한다. 하지만, ***Overloading***은 **Compile time Polymorphism**을 구현한다.
+ 2. The method Overriding은 superclass와 subclass 사이에서 일어난다. Overloading은 같은 class 내의 method에서 일어난다.
+ 3. Overriding methods는 같은 signature(i.e name and method parameters)를 갖는다. Overloaded methods는 메소드명은 같으나, 파라미터가 다르다. 
+    > Java 5.0 이전의 overriding method는 파라미터와 return type 둘 다 같아야 했지만, Java 5.0에선 ***covariant return type***을 도입했다.
+    >> 이로 인해, overriding method는 same signature를 가져야 하지만, return type은 subclass를 가질 수 있다.
+    >>> 즉, Subclass안에 있는 overriding method는 같은 signature를 갖는 superclass 함수의 return type의 subclass type을 return type으로 가질 수 있다.
+    >>>> 단, 그 return type은 **Non-Primitive**이어야 한다.
+      - Example
+        ```
+         부모 class의 display() function has return type ——- Object
+         자식 class의 display() function has return type ——- String
+  
+        Just like every other class in Java, String class extends the Object class i.e. String is a sub-type of Object. 
+        Hence we can use it as return type in overridden display() function instead of type Object as in Base class.
+        ```
+  
+           :point_right: Basically 부모 class의 display() method has a covariant return type.
+           
+  4. With **Overloading**, 호출된 method는 **compile-time**에 결정된다. With **Overriding**, method call is determined at the **runtime** based on the object type.
+  5. ***만약 overriding이 break 된다면***, 이것은 프로그램에 심각한 이슈를 발생시킨다. 왜냐하면 그 effect는 **runtime**에 보이기 때문이다. 
+    
+      ***반면에, overloading이 break 된다면,*** **compile-time**에 error를 발생시킬 것이고, 때문에 에러를 해결하기 더 쉽다.
