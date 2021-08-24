@@ -138,3 +138,5 @@ String s = "javatpont";
   5. ***만약 overriding이 break 된다면***, 이것은 프로그램에 심각한 이슈를 발생시킨다. 왜냐하면 그 effect는 **runtime**에 보이기 때문이다. 
     
       ***반면에, overloading이 break 된다면,*** **compile-time**에 error를 발생시킬 것이고, 때문에 에러를 해결하기 더 쉽다.
+          
+        > [compile time, runtime은 뭘까요??](#compile-time-and-runtime)
