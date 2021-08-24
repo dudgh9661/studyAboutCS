@@ -139,4 +139,21 @@ String s = "javatpont";
     
       ***반면에, overloading이 break 된다면,*** **compile-time**에 error를 발생시킬 것이고, 때문에 에러를 해결하기 더 쉽다.
           
-        > [compile time, runtime은 뭘까요??](#compile-time-and-runtime)
+        > [Compile time과 Runtime은 뭘까요??](#compile-time-and-runtime)
+
+
+### Compile time and Runtime
+ - Compile time 
+    > At compile time, The java file is compiled by ***Java Compiler***(It does not interact with OS) and converts ***the Java code*** into ***bytecode.***
+    
+    Ex] Java Code(Simple.**java**) -> Java Compiler -> Byte Code(Simple.**class**)
+    
+  - Runtime
+      
+      런타임에서 다음과 같은 일들이 일어납니다!
+      
+       > Class File -> Classloader -> Bytecode Verified -> Interpreter -> Runtime -> Hardware
+       
+       - Classloader : class file들을 load하기 위해 사용하는 JVM의 subsystem.
+       - Bytecod Verifier : 객체에 대한 접근 권한들을 위반하는지를 check.
+       - Interpreter : bytecode stream을 읽고, 명령어들을 실행.
