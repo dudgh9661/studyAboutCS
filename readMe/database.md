@@ -31,23 +31,30 @@
 
   - Vertical Scale up
     - 장점
-      1. Single Server에 모든 데이터가 존재하기 때문에 Simple하고 관리가 용이하다.
+      1. 정해진 스키마에 따라 데이터가 저장되므로 명확한 데이터 구조를 보장한다.
     - 단점
-      1. Multiple Query들을 동시에 수행하기 어렵다.
-      2. 서버의 Maximum Load를 초과하면, Downtime(중단시간) 확률이 높아진다.
+      1. 테이블 간 관계를 맺고 있기 때문에 시스템이 커질 경우 JOIN문이 많은 복잡한 쿼리가 만들어질 수 있다.
+      2. Vertical Scale up으로 인해 성능 향상 비용이 굉장히 비싸다.
+      3. 스키마로 인해 데이터가 유연하지 못하고 스키마 변경이 어렵다.
   - Horizontal Scale up
     - 장점
-      1. Query는 특정한 서버에서 수행되기 때문에 server에 Load를 줄이고 better performanc를 준다.
-      2. Vertical Scaling에 비해 저렴하다.
+      1. 스키마가 존재하지 않기 때문에 유연하고 자유로운 데이터 구조를 갖는다. 때문에 언제든 저장된 데이터를 조정하고 새로운 필드를 추가할 수 있다.
+      2. 데이터 분산이 용이하며, Vertical Scaling에 비해 저렴하다.
       3. Downtime 확률이 더 적다. Maximum Load가 될 확률이 적기 때문에.
 
     - 단점
-      1. Cross-server communication이 포함될 수 있기 때문에 Join을 만들기 어렵다.
+      1. 테이블 간 Join을 할 수 없다.
       2. Cosistency만 보장해주기 때문에, 동시에 발생하는 은행의 Transaction에 적절하지 않다.
       3. 각 기능을 서버별로 쉽게 분류할 수 없다. 때때로 이미지는 단일서버가 처리할 수 있는 것보다 더 많은 공간을 차지할 수 있다.
 
 
  ***Atomic Transaction이 필요하다면 Vertical Sacling, 중복성을 허용하고 Join이 less하다면 Horizontal Scaling이 유리하다.***
+ 
+ :question: ***RDBMS, NoSQL 언제 사용해야 될까??***
+ 
+   - RDBMS : 데이터 구조가 변경될 여지가 없고 명확한 스키마가 필요한 경우 사용한다. 또한 중복된 데이터가 없어 데이터 변경이 용이하기 때문에 관계를 맺고 있는 데이터가 자주 변경되는 시스템에 적합하다.
+
+   - NoSQL : 정확한 데이터 구조를 정의하기 힘들고, 데이터가 변경/확장 될 수 있는 경우에 사용한다. 또한 데이터 중복이 가능하기 때문에 중복된 데이터가 변경될 시에는 모든 컬렉션(=SQL에서의 테이블)에서 수정을 해야 한다.  이러한 이유로 Update가 많이 이루어지지 않는 시스템에 적합하며 Horizontal Scale up이 가능하다는 장점을 활용해 대용량의 데이터를 저장해야하는 시스템에 사용하면 적합하다.
 
 --- 
 
