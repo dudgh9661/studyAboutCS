@@ -157,3 +157,15 @@ String s = "javatpont";
        - Classloader : class file들을 load하기 위해 사용하는 JVM의 subsystem.
        - Bytecod Verifier : 객체에 대한 접근 권한들을 위반하는지를 check.
        - Interpreter : bytecode stream을 읽고, 명령어들을 실행.
+
+## 예외처리
+
+## Static 
+  -  메모리에 고정적으로 할당되어, 프로그램이 종료될 때 해제되는 변수
+      > 일반적으로 우리가 만든 Class는 Static 영역에 생성되고, new 연산을 통해 생성한 객체는 Heap영역에 생성됩니다. 객체의 생성시에 할당된 Heap영역의 메모리는 Garbage Collector를 통해 수시로 관리를 받습니다. 하지만 Static 키워드를 통해 Static 영역에 할당된 메모리는 모든 객체가 공유하는 메모리라는 장점을 지니지만, Garbage Collector의 관리 영역 밖에 존재하므로 Static을 자주 사용하면 프로그램의 종료시까지 메모리가 할당된 채로 존재하므로 자주 사용하게 되면 시스템의 퍼포먼스에 악영향을 주게 됩니다
+      
+ :question: 언제 사용하면 좋을까?
+ 
+  하나의 클래스에 ***여러번 사용되는 함수***들을 static 키워드를 이용해 관리한다.
+      
+      > Ex) Util
