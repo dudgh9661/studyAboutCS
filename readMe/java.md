@@ -167,5 +167,4 @@ String s = "javatpont";
  :question: 언제 사용하면 좋을까?
  
   하나의 클래스에 ***여러번 사용되는 함수***들을 static 키워드를 이용해 관리한다.
-      
-      > Ex) Util
+  > Ex) Util
