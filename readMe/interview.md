@@ -19,3 +19,5 @@
   Overloading 생성자 Annotation: Overloading 생성자 호출 시 함께 주입된다.
   
   Setter Annotation : Setter함수 호출 시 함께 주입된다.
+  
+  비록 기능적인 측면에선 다소 부족해보일 수 있으나, Web의 가장 기본적인 동작인 CRUD를 구현하는 과정을 통해 Spring Framework가 왜 탄생했고, 이것이 가진 강점이 무엇인지, 그리고 어떻게 동작하는지를 이해할 수 있었습니다. 이 과정은 이후 제가 Spring Framework를 사용하는 어떤 프로젝트에 투입됐을 때, 프로젝트 구조를 더 빠르게 이해하고 Spring Framework가 가진 강점을 통해 프로그램의 고도화를 이뤄내는 밑거름이 되어줄 것이라 생각합니다.
