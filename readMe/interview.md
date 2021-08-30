@@ -10,3 +10,12 @@
   
   ❓Spring Framework에서 생성자 주입을 권하는 이유는? [이유](https://jgrammer.tistory.com/entry/springboot-의존성-주입-방식-결정)
   
+ 
+#### 끄적끄적 ####
+  의존성을 바꿔줄 때, 소스코드 변경없이 XML을 이용한 설정만 바꾸면 바꿀 수 있었다. 이후, XML 대신 메타데이터인 '어노테이션'을 통해 더 편하게 설정을 바꿀 수 있게 되었다.
+  
+  Field Annotation : 기본생성자가 생성될 때 함께 주입된다. 때문에 Overloading 생성자는 있고 기본 생성자는 없을 때, Field Annotation을 사용하면 에러가 발생한다.
+  
+  Overloading 생성자 Annotation: Overloading 생성자 호출 시 함께 주입된다.
+  
+  Setter Annotation : Setter함수 호출 시 함께 주입된다.
