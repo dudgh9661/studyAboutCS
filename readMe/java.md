@@ -168,3 +168,7 @@ String s = "javatpont";
  
   하나의 클래스에 ***여러번 사용되는 함수***들을 static 키워드를 이용해 관리한다.
   > Ex) Util
+
+### Reflection
+
+https://dublin-java.tistory.com/53
