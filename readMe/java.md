@@ -172,3 +172,7 @@ String s = "javatpont";
 ### Reflection
 
 https://dublin-java.tistory.com/53
+
+### equals(), hashCode()를 재정의해야하는 이유
+
+https://jisooo.tistory.com/entry/java-hashcode와-equals-메서드는-언제-사용하고-왜-사용할까
