@@ -62,6 +62,9 @@
 
 <h3>Clusterd Index vs Non-Clustered Index</h3>
 
+https://lalwr.blogspot.com/2016/02/db-index.html
+
+
 - Clustered Index
  > 테이블 당 1개만 가질 수 있다. 
  
