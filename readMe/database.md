@@ -56,6 +56,31 @@
 
    - NoSQL : 정확한 데이터 구조를 정의하기 힘들고, 데이터가 변경/확장 될 수 있는 경우에 사용한다. 또한 데이터 중복이 가능하기 때문에 중복된 데이터가 변경될 시에는 모든 컬렉션(=SQL에서의 테이블)에서 수정을 해야 한다.  이러한 이유로 Update가 많이 이루어지지 않는 시스템에 적합하며 Horizontal Scale up이 가능하다는 장점을 활용해 대용량의 데이터를 저장해야하는 시스템에 사용하면 적합하다.
 
+:triangular_flag_on_post: 요약
+
+**RDBMS**
+
+- Predefined Scheama is strict.
+- table-based data structure
+- Vertically Scalable -> It is usually more Expensive
+- Changing the schema structure in a relational db can be extremely expensive, time-consuming and often involve downtime or service interrups
+- When data can structed and their relationship can clearly defined RDBMS is built.
+
+**NoSQL**
+
+- NoSQL are designed to handle the more complex, unstructed data (e.g texts, social media posts, photos)
+- Non-relational, can be document-based(e.g JSON), graph databases(that is used for analyzing data relationship, but not provide range retrieve), key-value pairs or wide-column stores
+- Don`t required any predefined scheam, So good fit with modern Agile development practices.
+- Allow you to work more freely with Unstructed data
+- horizontal scailing nature of NoSQL db is more cost-efficient
+- 과거와는 달리 기술의 발전(e.g Big data)으로 RDMS는 급격히 확장하는 data양과 복잡한 data 구조를 다루기에 힘들어졌다. NoSQL은 flexible, scalable, cost-efficient의 장점으로 RDBMS의 단점을 극복했다.
+- Not supported ACID
+
+> ***RDBMS*** requre a Sing Server to host the entire databases. In order to scale you need to buy a bigger, more expensive Server. 
+> 
+> ***NoSQL*** add capacitiy by scailing horizontally over cheap commodity servers.
+
+
 --- 
 
 <h2>Index</h2>
