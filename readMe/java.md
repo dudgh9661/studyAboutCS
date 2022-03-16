@@ -7,6 +7,8 @@
 
 [4. Java, Call by Value? Call by Reference](https://jackjeong.tistory.com/37)
 
+[5. GC 과정](#gc-과정)
+
 ## Java String
 - Java에서 String은 char values의 sequence를 표현하는 Object(객체)이다. 
 ```
@@ -144,7 +146,7 @@ String s = "javatpont";
         > [Compile time과 Runtime은 뭘까요??](#compile-time-and-runtime)
 
 
-### Compile time and Runtime
+## Compile time and Runtime
  - Compile time 
     > At compile time, The java file is compiled by ***Java Compiler***(It does not interact with OS) and converts ***the Java code*** into ***bytecode.***
     
@@ -171,11 +173,48 @@ String s = "javatpont";
   하나의 클래스에 ***여러번 사용되는 함수***들을 static 키워드를 이용해 관리한다.
   > Ex) Util
 
-### Reflection
+## Reflection
 
 https://dublin-java.tistory.com/53
 
-### equals(), hashCode()를 재정의해야하는 이유
+## equals(), hashCode()를 재정의해야하는 이유
 
 https://jisooo.tistory.com/entry/java-hashcode와-equals-메서드는-언제-사용하고-왜-사용할까
+
+## GC-과정
+
+**stop-the-world**
+  > GC를 실행하기 위해 JVM이 애플리케이션 실행을 멈추는 것을 말한다. stop-the-world가 발생하면 GC를 실행하는 쓰레드를 제외한 나머지 쓰레드는 모두 작업을 멈춘다. 
+  > GC 작업을 완료한 이후에야 중단했던 작업을 다시 시작한다.
+  > 
+  > 어떤 GC 알고리즘을 사용하더라도 stop-the-world는 발생하며, 대개의 경우 GC 튜닝은 이 stop-the-world 시간을 줄이는 것을 말한다.
+
+Heap은 Young 영역(Eden + survivor 2개) + Old 영역 + Permanent 영역(== Method Area)으로 구성되어 있다.
+
+- Young 영역
+  - 새롭게 생성한 객체의 대부분이 여기에 위치한다. 대부분의 객체가 금방 접근 불가능한 상태(Unreachable)가 되기 때문에 매우 많은 객체가 Young 영역에 생성되었다가 사라진다.
+  - 이 영역에서 객체가 사라질 때, **Minor GC**가 발생한다고 말한다.
+
+- Old 영역
+  - 접근 불가능한 상태가 되지 않아 Young 영역에서 살아남은 객체가 여기에 복사된다. 대부분 Young 영역보다 크게 할당되며, 크기가 큰 만큼 Young 영역보다 GC는 적게 발생한다.
+  - 이 영역에서 객체가 사라질 때, Major GC(혹은 Full GC)가 발생한다고 말한다.
+
+- Permanant 영역
+  - Method Area라고도 불리며, 객체나 억류(intern)된 문자열 정보를 저장하는 곳이며, Old 영역에서 살아남은 객체가 영원히 남아 있는 곳은 절대 아니다.
+  - 이 영역에서 GC가 발생할 수도 있는데 여기서 GC가 발생해도 Major GC의 횟수에 포함된다.
+
+### Young 영역의 구성 ###
+- Eden 영역
+- Survivor 영역 2개
+
+처리 절차
+
+1. 새로 생성한 대부분의 객체는 Eden 영역에 위치한다.
+2. Eden 영역에서 GC가 한번 발생한 후, 살아남은 객체는 Survivor 영역 중 하나로 이동한다.
+3. Eden 영역에서 GC가 발생하면, 이미 살아남은 객체가 존재하는 Survivor 영역으로(2번에서 이동된 Survivor 영역) 객체가 계속 쌓인다.
+4. 하나의 Survivor 영역이 가득 차면, Minor GC가 일어난 후 살아남은 객체를 다른 Survivor 영역으로 이동시키고, 가득 찬 Survivor 영역은 아무 데이터도 없는 상태로 된다.
+5. 이 과정을 반복하며 일정 수치의 Age 값이 누적된 살아남은 객체들은 Old 영역으로 이동하게 된다.
+
+***절차를 확인해보면 알겠지만, Survivor 영역 중 하나는 반드시 비어 있는 상태로 남아 있어야 한다!!!***
+
 
