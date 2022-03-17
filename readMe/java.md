@@ -9,6 +9,12 @@
 
 [5. GC 과정](#gc-과정)
 
+[6. Java 메모리 구조](#java-메모리-구조)
+
+[7. 접근 제어 지시자](#접근-제어-지시자)
+
+[8. Collection](#collection)
+
 ## Java String
 - Java에서 String은 char values의 sequence를 표현하는 Object(객체)이다. 
 ```
@@ -181,7 +187,7 @@ https://dublin-java.tistory.com/53
 
 https://jisooo.tistory.com/entry/java-hashcode와-equals-메서드는-언제-사용하고-왜-사용할까
 
-## GC-과정
+## GC 과정
 
 **stop-the-world**
   > GC를 실행하기 위해 JVM이 애플리케이션 실행을 멈추는 것을 말한다. stop-the-world가 발생하면 GC를 실행하는 쓰레드를 제외한 나머지 쓰레드는 모두 작업을 멈춘다. 
@@ -216,5 +222,94 @@ Heap은 Young 영역(Eden + survivor 2개) + Old 영역 + Permanent 영역(== Me
 5. 이 과정을 반복하며 일정 수치의 Age 값이 누적된 살아남은 객체들은 Old 영역으로 이동하게 된다.
 
 ***절차를 확인해보면 알겠지만, Survivor 영역 중 하나는 반드시 비어 있는 상태로 남아 있어야 한다!!!***
+
+## JAVA 메모리 구조
+
+JDK = JRE(JVM + Library) + 개발툴
+
+### JAVA 실행 순서
+  1. **.java** 파일이 javac에 의해 컴파일되어 **바이트코드(.class)**로 변환된다.
+  2. 바이트 코드 파일은 완전한 기계어가 아니므로 단독으로 실행할 수 없고 **JVM**이 실행되어야 한다.
+  3. JVM은 **Class Loader**를 이용해 바이트 코드를 **Runtime Data Area**에 로드한다.
+  4. Runtime Data Area에 올라온 바이트 코드를 JVM의 **Execution Engine**을 이용해 기계어로 번역해 실행한다.
+
+### Runtime Data Area
+  > Heap + Stack + Method + Native Method Stack + PC Register
+
+- Heap
+  - **모든 Thread가 공유하는 공간**
+  - 동적으로 생성된 인스턴스들이 할당되는 공간
+  - **GC로부터 관리되는 공간**
+  - 모든 Thread가 공유하기 때문에 동기화 문제가 발생할 수 있다.
+
+- Stack
+  - Thread의 Method가 호출될 때 수행 정보(메소드 호출 주소, 매개 변수, 지역 변수 etc..)가 Frame이라는 단위로 쌓이고, Method가 종료될 때 stack에서 pop 된다.
+
+- Method
+  - Class 또는 Interface에 대한 메타 데이터 정보가 적재되는 공간
+  - 이 영역에 등록된 Class만이 Heap에 생성될 수 있다.
+
+- Native Method Stack
+  - Java 이외의 언어로 작성된 Native 코드들을 위한 공간 Ex. JNI(Java Native Interface)를 통해 호출되는 C/C++ 등의 코드
+
+- PC Register
+  - 현재 수행 중인 JVM Instruction의 주소를 가진다.
+
+## 접근 제어 지시자
+
+- Public : 어디에서나 접근 가능하다.
+- Protected : 같은 패키지 또는 해당 Class를 상속한 다른 패키지의 class에서 접근 가능하다.
+- Private : 해당 Class 내에서만 접근 가능하다.
+- Default : 같은 package에서만 접근 가능하다.
+
+## Collection
+
+- Map
+  - HashMap
+    > Thread - **Un**Safe
+
+    > Key & Value accept **null** 
+  - HashTable
+    > Thread - Safe
+
+    > Key * Value **NOT** accept null
+
+    > Slower than HashMap. Because It is support to Thread - Safe!
+
+   - TreeMap
+    > Key 값을 기준으로 정렬한다.
+
+  - LinkedHashTable
+    > 입력한 순새더로 Key 값 정렬
+
+- SET
+  - HashSet
+    > null 입력이 가능하지만, 한번만 저장 가능하고 중복될 수 없다.
+    
+    > data를 중복 저장할 수 없고, **순서를 보장하지 않는다.**
+    
+    > 내부적으로 HashMap을 사용한다.
+  - TreeSet
+    > null 입력이 가능하지만, 한번만 저장 가능하고 중복될 수 없다.
+    
+    > data를 중복 저장할 수 없고, **기본 오름차순으로 데이터를 정렬한다.**
+    
+    > 내부적으로 TreeMap을 사용한다.
+  - LinkedHashSet
+    > null 입력이 가능하지만, 한번만 저장 가능하고 중복될 수 없다.
+    
+    > data를 중복 저장할 수 없고, **입력한 순서대로 데이터를 정렬한다.**
+    
+    > 내부적으로 LinkedHashTable을 사용한다.
+
+- List
+  - ArrayList
+    > Thread - Unsafe
+
+    > 사이즈가 현재 사이즈의 50%씩 늘어난다.
+  - Vector
+    > Thread - Safe
+    
+    > 사이즈가 현재 사이즈의 100%씩 늘어난다.
 
 
